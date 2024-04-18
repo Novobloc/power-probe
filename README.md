@@ -53,3 +53,23 @@
     To assign a burner wallet to a slot, you need to sign a message with the private key of the Account holding the slot.
     Private Key:
     ```
+
+
+
+
+# API List: APIs integrated from snapshotter node
+```
+1. http://localhost:3001/api/snapshotter/health
+
+2. http://localhost:3001/api/snapshotter/current_epoch
+
+3. http://localhost:3001/api/snapshotter/epoch
+
+4. http://localhost:3001/api/snapshotter/epoch?id=9103
+
+5. http://localhost:3001/api/snapshotter/snapshotter_status
+
+6. http://localhost:3001/api/snapshotter/snapshotter_epoch_processing_status
+
+7. http://localhost:3001/api/snapshotter/task_status?wallet_address=fdfk&task_type=sbd
+```

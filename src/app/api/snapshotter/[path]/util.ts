@@ -30,7 +30,7 @@ export const getCurrentEpoch = () => {
     });
 };
 
-export const getEpochByID = (id: number) => {
+export const getEpochByID = (id: string) => {
   // Send GET request to "/health" endpoint
   return Axios.get(`/epoch/${id}`) // eg: 9103
     .then((response) => {
@@ -45,7 +45,7 @@ export const getEpochByID = (id: number) => {
     });
 };
 
-export const getSnapshotterStatus = (id: number) => {
+export const getSnapshotterStatus = () => {
   // Send GET request to "/health" endpoint
   return Axios.get('/internal/snapshotter/status')
     .then((response) => {
@@ -60,7 +60,7 @@ export const getSnapshotterStatus = (id: number) => {
     });
 };
 
-export const getSnapshotterEpochProcessingStatus = (id: number) => {
+export const getSnapshotterEpochProcessingStatus = () => {
   // Send GET request to "/health" endpoint
   return Axios.get('/internal/snapshotter/epochProcessingStatus?page=1&size=10')
     .then((response) => {
@@ -85,7 +85,7 @@ export const getSnapshotterTaskStatus = (task_type: string, wallet_address: stri
     })
     .catch((error) => {
       // Handle errors, e.g., log error messages
-      console.error('Error fetching epoch processing status:', error);
+      console.error('Error fetching epoch processing status:', error.message);
       // Return an empty object or any other default value as needed
       return {};
     });
