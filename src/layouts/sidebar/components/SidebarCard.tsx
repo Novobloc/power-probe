@@ -1,4 +1,33 @@
+import { getCurrentEpoch, getEpochByID } from "api/util";
+import { useState, useEffect } from "react";
+
 const FreeCard = () => {
+  const [data, setData]: any = useState();
+  const [blockData, setBlockData]: any = useState();
+  console.log(blockData?.timestamp, "timestamp");
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await getCurrentEpoch();
+      console.log(response, "response");
+
+      if (response) {
+        setData(response);
+        const fetchEpochData = async () => {
+          const epochResponse = await getEpochByID(response.epochId);
+          console.log(epochResponse, "epochResponse");
+          if (epochResponse) {
+            setBlockData(epochResponse);
+          }
+        };
+
+        fetchEpochData();
+      }
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <div className="relative mt-14 flex w-[256px] justify-center rounded-[20px] bg-gradient-to-br from-[#868CFF] via-[#432CF3] to-brand-500 pb-4">
       <div className="absolute -top-12 flex h-24 w-24 items-center justify-center rounded-full border-[4px] border-white bg-gradient-to-b from-[#868CFF] to-brand-500 dark:!border-navy-800">
@@ -27,9 +56,9 @@ const FreeCard = () => {
       </div>
 
       <div className="mt-16 flex h-fit flex-col items-center">
-        <p className="text-4xl font-bold text-white ">9950</p>
+        <p className="text-4xl font-bold text-white ">{data?.epochId}</p>
         <p className="mt-1 px-4 text-center text-sm text-white">
-          Curent epoch number
+          Current epoch number
         </p>
 
         <a
@@ -39,18 +68,20 @@ const FreeCard = () => {
         >
           Block Number
           <br />
-          9489579938
+          {blockData?.blocknumber}
         </a>
         <br />
         <p className="mt-1 px-4 text-center text-sm text-white">
-          9:10 PM 3 November 2031
+          {blockData?.timestamp
+            ? new Date(blockData?.timestamp * 1000).toISOString()
+            : new Date().toISOString()}
         </p>
         <br />
         <p className="mt-1 px-4 text-center text-sm text-white">
-          BEGIN: 12709234
+          BEGIN: {data?.begin}
         </p>
         <p className="mt-1 px-4 text-center text-sm text-white">
-          END: 23405987
+          END: {data?.end}
         </p>
       </div>
     </div>
