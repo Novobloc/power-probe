@@ -1,6 +1,3 @@
-
-
-
 import tableDataTopCreators from "components/dashboard/tableDataTopCreators";
 import HistoryCard from "../components/dashboard/Last10Epoch";
 import TopCreatorTable from "../components/dashboard/Projects";
@@ -28,22 +25,17 @@ const Dashboard = () => {
             author="Esthera Jackson"
             title="Total Successful Submissions"
             sub={10}
-           
             color="bg-green-400"
           />
           <NftCard
             author="Nick Wilson"
             title="Total Incorrect Submissions"
-            
             sub={1}
             color="bg-red-400"
-            
-
           />
           <NftCard
             author="Will Smith"
             title="Total Missed Submissions"
-           
             sub={9}
             color="bg-yellow-400"
           />
