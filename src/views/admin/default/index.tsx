@@ -9,7 +9,7 @@ import { MdBarChart, MdDashboard } from "react-icons/md";
 import Widget from "components/widget/Widget";
 import CheckTable from "views/admin/default/components/CheckTable";
 import ComplexTable from "views/admin/default/components/ComplexTable";
-import DailyTraffic from "views/admin/default/components/DailyTraffic";
+import DailyTraffic from "views/admin/default/components/Health";
 import TaskCard from "views/admin/default/components/TaskCard";
 import tableDataCheck from "./variables/tableDataCheck";
 import tableDataComplex from "./variables/tableDataComplex";

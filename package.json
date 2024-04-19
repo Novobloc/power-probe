@@ -1,6 +1,7 @@
 {
   "name": "scaling-eth-2024",
   "version": "0.1.0",
+  "description": "Powerprobe | Powerloom node monitering system",
   "private": true,
   "dependencies": {
     "@chakra-ui/hooks": "^2.1.4",
@@ -20,6 +21,7 @@
     "@types/react": "^18.0.15",
     "@types/react-dom": "^18.0.6",
     "apexcharts": "^3.35.5",
+    "classnames": "^2.5.1",
     "framer-motion": "^7.10.2",
     "react": "^18.2.0",
     "react-apexcharts": "^1.4.0",

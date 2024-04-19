@@ -1,11 +1,9 @@
 /* eslint-disable */
 
 import { HiX } from "react-icons/hi";
-import Links from "./components/Links";
-
 import SidebarCard from "components/sidebar/components/SidebarCard";
-import routes from "routes";
 import { MdBarChart } from "react-icons/md";
+import Storage from "../../views/admin/profile/components/Storage";
 
 const Sidebar = (props: {
   open: boolean;
@@ -31,7 +29,7 @@ const Sidebar = (props: {
         </div>
       </div>
       <div className="mt-[58px] mb-7 h-px bg-gray-300 dark:bg-white/30" />
-      {/* Nav item */}
+      
 
       
 

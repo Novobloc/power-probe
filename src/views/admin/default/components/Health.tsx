@@ -3,25 +3,25 @@ import { barChartDataDailyTraffic } from "variables/charts";
 import { barChartOptionsDailyTraffic } from "variables/charts";
 import { MdArrowDropUp } from "react-icons/md";
 import Card from "components/card";
-const DailyTraffic = () => {
+const Health = () => {
   return (
     <Card extra="pb-7 p-[20px]">
       <div className="flex flex-row justify-between">
         <div className="ml-1 pt-2">
           <p className="text-sm font-medium leading-4 text-gray-600">
-            Daily Traffic
+            Health
           </p>
           <p className="text-[34px] font-bold text-navy-700 dark:text-white">
-            2.579{" "}
+            Good{" "}
             <span className="text-sm font-medium leading-6 text-gray-600">
-              Visitors
+              2 seconds ago
             </span>
           </p>
         </div>
         <div className="mt-2 flex items-start">
           <div className="flex items-center text-sm text-green-500">
             <MdArrowDropUp className="h-5 w-5" />
-            <p className="font-bold"> +2.45% </p>
+            <p className="font-bold"> 99% uptime </p>
           </div>
         </div>
       </div>
@@ -36,4 +36,4 @@ const DailyTraffic = () => {
   );
 };
 
-export default DailyTraffic;
+export default Health;
