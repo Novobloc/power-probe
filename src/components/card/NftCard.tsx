@@ -2,7 +2,6 @@ import Card from "components/card";
 import classnames from "classnames";
 
 const NftCard = (props: {
-  image: string;
   title: string;
   author: string;
   sub: number;
@@ -21,13 +20,11 @@ const NftCard = (props: {
           </p>
         </div>
 
-       
-          <div className="flex items-center justify-center gap-2">
-            <div className={classnames("h-8 w-8 rounded-full", color)} />
-            <p className="text-sm font-bold text-brand-500 dark:text-white">
-              {title}
-            </p>
-         
+        <div className="flex items-center justify-center gap-2">
+          <div className={classnames("h-8 w-8 rounded-full", color)} />
+          <p className="text-sm font-bold text-brand-500 dark:text-white">
+            {title}
+          </p>
         </div>
       </div>
     </Card>
