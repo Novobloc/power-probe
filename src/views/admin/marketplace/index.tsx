@@ -5,7 +5,7 @@ import tableDataTopCreators from "views/admin/marketplace/variables/tableDataTop
 import HistoryCard from "./components/Last10Epoch";
 import TopCreatorTable from "./components/Projects";
 import NftCard from "components/card/NftCard";
-import Health from "../default/components/Health";
+import Health from "./components/Health";
 
 const Marketplace = () => {
   return (

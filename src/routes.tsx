@@ -2,7 +2,7 @@ import React from "react";
 import NFTMarketplace from "views/admin/marketplace";
 
 // Icon Imports
-import { MdOutlineShoppingCart, MdBarChart } from "react-icons/md";
+import { MdOutlineShoppingCart } from "react-icons/md";
 
 const routes = [
   {
