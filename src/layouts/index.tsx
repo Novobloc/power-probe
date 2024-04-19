@@ -1,11 +1,11 @@
 import React from "react";
-import Navbar from "components/navbar";
-import Sidebar from "components/sidebar";
-import Footer from "components/footer/Footer";
+import Navbar from "layouts/navbar";
+import Sidebar from "layouts/sidebar";
+import Footer from "layouts/footer/Footer";
 import routes from "routes";
-import Marketplace from "views/admin/marketplace";
+import Dashboard from "layouts/Dashboard";
 
-export default function Admin(props: { [x: string]: any }) {
+export default function DashboardLayout(props: { [x: string]: any }) {
   const { ...rest } = props;
   const [open, setOpen] = React.useState(true);
 
@@ -46,7 +46,7 @@ export default function Admin(props: { [x: string]: any }) {
               {...rest}
             />
             <div className="pt-5s mx-auto mb-auto h-full min-h-[84vh] p-2 md:pr-2">
-              <Marketplace />
+              <Dashboard />
             </div>
             <div className="p-3">
               <Footer />

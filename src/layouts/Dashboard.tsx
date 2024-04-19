@@ -1,13 +1,13 @@
 
 
 
-import tableDataTopCreators from "views/admin/marketplace/variables/tableDataTopCreators";
-import HistoryCard from "./components/Last10Epoch";
-import TopCreatorTable from "./components/Projects";
+import tableDataTopCreators from "components/dashboard/tableDataTopCreators";
+import HistoryCard from "../components/dashboard/Last10Epoch";
+import TopCreatorTable from "../components/dashboard/Projects";
 import NftCard from "components/card/NftCard";
-import Health from "./components/Health";
+import Health from "../components/dashboard/Health";
 
-const Marketplace = () => {
+const Dashboard = () => {
   return (
     <div className="mt-3 grid h-full grid-cols-1 gap-5 xl:grid-cols-2 2xl:grid-cols-3">
       <div className="col-span-1 h-fit w-full xl:col-span-1 2xl:col-span-2">
@@ -61,4 +61,4 @@ const Marketplace = () => {
   );
 };
 
-export default Marketplace;
+export default Dashboard;

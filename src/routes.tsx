@@ -1,5 +1,5 @@
 import React from "react";
-import NFTMarketplace from "views/admin/marketplace";
+import NFTMarketplace from "layouts/Dashboard";
 
 // Icon Imports
 import { MdOutlineShoppingCart } from "react-icons/md";

@@ -1,7 +1,7 @@
 /* eslint-disable */
 
 import { HiX } from "react-icons/hi";
-import SidebarCard from "components/sidebar/components/SidebarCard";
+import SidebarCard from "layouts/sidebar/components/SidebarCard";
 import { MdBarChart } from "react-icons/md";
 
 
