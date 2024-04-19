@@ -7,6 +7,8 @@ import Nft6 from "assets/img/nfts/Nft6.png";
 
 import { FaEthereum } from "react-icons/fa";
 import Card from "components/card";
+import { useEffect, useState } from "react";
+import { getSnapshotterEpochProcessingStatus } from "api/util";
 
 const HistoryCard = () => {
   const HistoryData = [
@@ -54,6 +56,30 @@ const HistoryCard = () => {
     },
   ];
 
+  const [epochData, setEpochData]: any = useState(HistoryData);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await getSnapshotterEpochProcessingStatus();
+      console.log(response, "response");
+
+      const currentTimestamp = Math.floor(Date.now() / 1000); // Get current timestamp in seconds
+
+      const formattedData = response.items.map((item: any) => ({
+        image: Nft1,
+        title: item.epochId.toString(),
+        owner: item.epochEnd.toString(),
+        price: item.transitionStatus.EPOCH_RELEASED.status,
+        time: `${
+          currentTimestamp - item.transitionStatus.EPOCH_RELEASED.timestamp
+        }s`,
+      }));
+      setEpochData(formattedData);
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <Card extra={"mt-3 !z-5 overflow-hidden"}>
       {/* HistoryCard Header */}
@@ -61,12 +87,11 @@ const HistoryCard = () => {
         <div className="text-lg font-bold text-navy-700 dark:text-white">
           Last 10 Epoch
         </div>
-        
       </div>
 
       {/* History CardData */}
 
-      {HistoryData.map((data, index) => (
+      {epochData.map((data: any, index: any) => (
         <div className="flex h-full w-full items-start justify-between bg-white px-3 py-[20px] hover:shadow-2xl dark:!bg-navy-800 dark:shadow-none dark:hover:!bg-navy-700">
           <div className="flex items-center gap-3">
             <div className="flex h-16 w-16 items-center justify-center">
@@ -89,12 +114,12 @@ const HistoryCard = () => {
           </div>
 
           <div className="mt-1 flex items-center justify-center text-navy-700 dark:text-white">
-            <div>
+            {/* <div>
               <FaEthereum />
-            </div>
+            </div> */}
             <div className="ml-1 flex items-center text-sm font-bold text-navy-700 dark:text-white">
               <p> {} </p>
-              {data.price} <p className="ml-1">ETH</p>
+              {data.price} <p className="ml-1"></p>
             </div>
             <div className="ml-2 flex items-center text-sm font-normal text-gray-600 dark:text-white">
               <p>{data.time}</p>
