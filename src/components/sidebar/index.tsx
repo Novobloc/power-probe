@@ -3,7 +3,7 @@
 import { HiX } from "react-icons/hi";
 import SidebarCard from "components/sidebar/components/SidebarCard";
 import { MdBarChart } from "react-icons/md";
-import Storage from "../../views/admin/profile/components/Storage";
+
 
 const Sidebar = (props: {
   open: boolean;
