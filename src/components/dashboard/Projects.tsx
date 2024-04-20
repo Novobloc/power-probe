@@ -17,7 +17,7 @@ type RowObj = {
 function CheckTable(props: { tableData: any }) {
   const { tableData } = props;
   console.log(tableData, "tableData");
-  
+
   const [sorting, setSorting] = React.useState<SortingState>([]);
   let defaultData = tableData;
   const columns = [
@@ -36,7 +36,7 @@ function CheckTable(props: { tableData: any }) {
             />
           </div>
           <p className="text-sm font-medium text-navy-700 dark:text-white">
-            {info.getValue()[0]}
+            {info.join("\n")}
           </p>
         </div>
       ),
@@ -54,7 +54,6 @@ function CheckTable(props: { tableData: any }) {
         </p>
       ),
     }),
-    
   ]; // eslint-disable-next-line
   const [data, setData] = React.useState(() => [...defaultData]);
   const table = useReactTable({
@@ -76,67 +75,25 @@ function CheckTable(props: { tableData: any }) {
         </div>
       </header>
 
-      <div className="mt-8 overflow-x-scroll xl:overflow-x-hidden">
-        <table className="w-full">
-          <thead>
-            {table.getHeaderGroups().map((headerGroup) => (
-              <tr key={headerGroup.id} className="!border-px !border-gray-400">
-                {headerGroup.headers.map((header) => {
-                  return (
-                    <th
-                      key={header.id}
-                      colSpan={header.colSpan}
-                      onClick={header.column.getToggleSortingHandler()}
-                      className="cursor-pointer border-b border-gray-200 pb-2 pr-4 pt-4 text-start"
-                    >
-                      <div className="items-center justify-between text-xs text-gray-200">
-                        {flexRender(
-                          header.column.columnDef.header,
-                          header.getContext()
-                        )}
-                        {{
-                          asc: "",
-                          desc: "",
-                        }[header.column.getIsSorted() as string] ?? null}
-                      </div>
-                    </th>
-                  );
-                })}
-              </tr>
-            ))}
-          </thead>
-          {tableData.length > 0 && (
-            <tbody>
-              {table
-                .getRowModel()
-                .rows.slice(0, 5)
-                .map((row) => {
-                  return (
-                    <tr key={row.id}>
-                      {row.getVisibleCells().map((cell) => {
-                        return (
-                          <td
-                            key={cell.id}
-                            className="min-w-[150px] border-white/0 py-3  pr-4"
-                          >
-                            {flexRender(
-                              cell.column.columnDef.cell,
-                              cell.getContext()
-                            )}
-                          </td>
-                        );
-                      })}
-                    </tr>
-                  );
-                })}
-            </tbody>
-          )}
+      {tableData.map((data: any, index: any) => (
+        <div className="flex h-full w-full items-start justify-between bg-white px-3 py-[20px] hover:shadow-2xl dark:!bg-navy-800 dark:shadow-none dark:hover:!bg-navy-700">
+          <div className="flex items-center gap-3">
+            <div className="flex flex-col">
+              <h5 className="text-base font-bold text-navy-700 dark:text-white">
+                {" "}
+                {data.name[0]}
+              </h5>
+            </div>
+          </div>
 
-          {
-            tableData.length === 0 && <p className="text-center py-20">No Data</p>
-          }
-        </table>
-      </div>
+          <div className="mt-1 flex items-center justify-center text-navy-700 dark:text-white">
+            <div className="ml-1 flex items-center text-sm font-bold text-navy-700 dark:text-white">
+              <p> {} </p>
+              {data.totalSubmissions} submissions<p className="ml-1"></p>
+            </div>
+          </div>
+        </div>
+      ))}
     </Card>
   );
 }
