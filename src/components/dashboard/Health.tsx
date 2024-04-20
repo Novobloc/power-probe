@@ -37,23 +37,23 @@ const Health = () => {
       theme: "dark",
     },
     xaxis: {
-      // categories: categoriesData,
-      categories: [
-        "00",
-        "04",
-        "08",
-        "12",
-        "14",
-        "16",
-        "18",
-        "00",
-        "04",
-        "08",
-        "12",
-        "14",
-        "16",
-        "18",
-      ],
+      categories: categoriesData,
+      // categories: [
+      //   "00",
+      //   "04",
+      //   "08",
+      //   "12",
+      //   "14",
+      //   "16",
+      //   "18",
+      //   "00",
+      //   "04",
+      //   "08",
+      //   "12",
+      //   "14",
+      //   "16",
+      //   "18",
+      // ],
       show: false,
       labels: {
         show: true,
@@ -216,23 +216,27 @@ const Health = () => {
       </div>
 
       <div className="h-[300px] w-full pb-0 pt-10">
-        {barChartDataDailyTraffic && barChartDataDailyTraffic.length > 0 && categoriesData.length>0 && (
-          <BarChart
-            // chartData={{
-            //   name: "Snapshot Status",
-            //   data: barChartDataDailyTraffic.map(
-            //     (dataPoint) => dataPoint.value
-            //   ),
-            // }}
-            chartData={[
-              {
-                name: "Snapshot Status",
-                data: [50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50],
-              },
-            ]}
-            chartOptions={barChartOptionsDailyTraffic}
-          />
-        )}
+        {barChartDataDailyTraffic &&
+          barChartDataDailyTraffic.length > 0 &&
+          categoriesData.length > 0 && (
+            <BarChart
+              chartData={[
+                {
+                  name: "Snapshot Status",
+                  data: barChartDataDailyTraffic.map(
+                    (dataPoint) => dataPoint.value
+                  ),
+                },
+              ]}
+              // chartData={[
+              //   {
+              //     name: "Snapshot Status",
+              //     data: [50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50],
+              //   },
+              // ]}
+              chartOptions={barChartOptionsDailyTraffic}
+            />
+          )}
       </div>
     </Card>
   );
