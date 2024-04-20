@@ -4,18 +4,15 @@ import { useState, useEffect } from "react";
 const FreeCard = () => {
   const [data, setData]: any = useState();
   const [blockData, setBlockData]: any = useState();
-  console.log(blockData?.timestamp, "timestamp");
 
   useEffect(() => {
     const fetchData = async () => {
       const response = await getCurrentEpoch();
-      console.log(response, "response");
 
       if (response) {
         setData(response);
         const fetchEpochData = async () => {
           const epochResponse = await getEpochByID(response.epochId);
-          console.log(epochResponse, "epochResponse");
           if (epochResponse) {
             setBlockData(epochResponse);
           }

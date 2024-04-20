@@ -3,8 +3,21 @@ import HistoryCard from "../components/dashboard/Last10Epoch";
 import TopCreatorTable from "../components/dashboard/Projects";
 import NftCard from "components/card/NftCard";
 import Health from "../components/dashboard/Health";
+import { useEffect, useState } from "react";
+import { getSnapshotterStatus } from "api/util";
 
 const Dashboard = () => {
+  const [data, setData]: any = useState();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await getSnapshotterStatus();
+      setData(response);
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <div className="mt-3 grid h-full grid-cols-1 gap-5 xl:grid-cols-2 2xl:grid-cols-3">
       <div className="col-span-1 h-fit w-full xl:col-span-1 2xl:col-span-2">
@@ -24,19 +37,19 @@ const Dashboard = () => {
           <NftCard
             author="Esthera Jackson"
             title="Total Successful Submissions"
-            sub={10}
+            sub={data?.totalSuccessfulSubmissions}
             color="bg-green-400"
           />
           <NftCard
             author="Nick Wilson"
             title="Total Incorrect Submissions"
-            sub={1}
+            sub={data?.totalIncorrectSubmissions}
             color="bg-red-400"
           />
           <NftCard
             author="Will Smith"
             title="Total Missed Submissions"
-            sub={9}
+            sub={data?.totalMissedSubmissions}
             color="bg-yellow-400"
           />
         </div>

@@ -1,7 +1,6 @@
 import React from "react";
 import Progress from "components/progress";
 import Card from "components/card";
-
 import {
   createColumnHelper,
   flexRender,
@@ -10,6 +9,7 @@ import {
   SortingState,
   useReactTable,
 } from "@tanstack/react-table";
+
 type RowObj = {
   name: string[];
   artworks: number;
@@ -86,8 +86,6 @@ function CheckTable(props: { tableData: any }) {
         <div className="text-xl font-bold text-navy-700 dark:text-white">
           Projects
         </div>
-
-       
       </header>
 
       <div className="mt-8 overflow-x-scroll xl:overflow-x-hidden">

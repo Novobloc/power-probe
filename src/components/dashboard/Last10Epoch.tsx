@@ -61,7 +61,6 @@ const HistoryCard = () => {
   useEffect(() => {
     const fetchData = async () => {
       const response = await getSnapshotterEpochProcessingStatus();
-      console.log(response, "response");
 
       const currentTimestamp = Math.floor(Date.now() / 1000); // Get current timestamp in seconds
 
