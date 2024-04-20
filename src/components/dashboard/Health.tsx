@@ -153,7 +153,7 @@ const Health = () => {
     fetchData();
 
     // Fetch data every minute
-    const intervalId = setInterval(fetchData, 10000);
+    const intervalId = setInterval(fetchData, 60000);
 
     // Clean up interval
     return () => clearInterval(intervalId);

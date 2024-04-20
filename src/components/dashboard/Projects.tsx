@@ -1,5 +1,4 @@
 import React from "react";
-import Progress from "components/progress";
 import Card from "components/card";
 import {
   createColumnHelper,
@@ -12,12 +11,13 @@ import {
 
 type RowObj = {
   name: string[];
-  artworks: number;
-  rating: number;
+  totalSubmissions: number;
 };
 
 function CheckTable(props: { tableData: any }) {
   const { tableData } = props;
+  console.log(tableData, "tableData");
+  
   const [sorting, setSorting] = React.useState<SortingState>([]);
   let defaultData = tableData;
   const columns = [
@@ -41,11 +41,11 @@ function CheckTable(props: { tableData: any }) {
         </div>
       ),
     }),
-    columnHelper.accessor("artworks", {
-      id: "artworks",
+    columnHelper.accessor("totalSubmissions", {
+      id: "totalSubmissions",
       header: () => (
         <p className="text-sm font-bold text-gray-600 dark:text-white">
-          ARTWORKS
+          SUBMISSIONS
         </p>
       ),
       cell: (info) => (
@@ -54,19 +54,7 @@ function CheckTable(props: { tableData: any }) {
         </p>
       ),
     }),
-    columnHelper.accessor("rating", {
-      id: "rating",
-      header: () => (
-        <p className="text-sm font-bold text-gray-600 dark:text-white">
-          RATING
-        </p>
-      ),
-      cell: (info) => (
-        <div className="mx-2 flex font-bold">
-          <Progress width="w-16" value={info.getValue()} />
-        </div>
-      ),
-    }),
+    
   ]; // eslint-disable-next-line
   const [data, setData] = React.useState(() => [...defaultData]);
   const table = useReactTable({
@@ -117,30 +105,36 @@ function CheckTable(props: { tableData: any }) {
               </tr>
             ))}
           </thead>
-          <tbody>
-            {table
-              .getRowModel()
-              .rows.slice(0, 5)
-              .map((row) => {
-                return (
-                  <tr key={row.id}>
-                    {row.getVisibleCells().map((cell) => {
-                      return (
-                        <td
-                          key={cell.id}
-                          className="min-w-[150px] border-white/0 py-3  pr-4"
-                        >
-                          {flexRender(
-                            cell.column.columnDef.cell,
-                            cell.getContext()
-                          )}
-                        </td>
-                      );
-                    })}
-                  </tr>
-                );
-              })}
-          </tbody>
+          {tableData.length > 0 && (
+            <tbody>
+              {table
+                .getRowModel()
+                .rows.slice(0, 5)
+                .map((row) => {
+                  return (
+                    <tr key={row.id}>
+                      {row.getVisibleCells().map((cell) => {
+                        return (
+                          <td
+                            key={cell.id}
+                            className="min-w-[150px] border-white/0 py-3  pr-4"
+                          >
+                            {flexRender(
+                              cell.column.columnDef.cell,
+                              cell.getContext()
+                            )}
+                          </td>
+                        );
+                      })}
+                    </tr>
+                  );
+                })}
+            </tbody>
+          )}
+
+          {
+            tableData.length === 0 && <p className="text-center py-20">No Data</p>
+          }
         </table>
       </div>
     </Card>

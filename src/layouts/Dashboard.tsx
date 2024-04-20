@@ -1,4 +1,3 @@
-import tableDataTopCreators from "components/dashboard/tableDataTopCreators";
 import HistoryCard from "../components/dashboard/Last10Epoch";
 import TopCreatorTable from "../components/dashboard/Projects";
 import NftCard from "components/card/NftCard";
@@ -7,12 +6,44 @@ import { useEffect, useState } from "react";
 import { getSnapshotterStatus } from "api/util";
 
 const Dashboard = () => {
+  const dummyData = [
+    {
+      projectId: "projectid1",
+      successfulSubmissions: 3,
+      missedSubmissions: 2,
+      incorrectSubmissions: 1,
+    },
+    {
+      projectId: "projectid2",
+      successfulSubmissions: 2,
+      missedSubmissions: 1,
+      incorrectSubmissions: 1,
+    },
+  ];
+
   const [data, setData]: any = useState();
+  const [projectsData, setProjectsData]: any = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
       const response = await getSnapshotterStatus();
       setData(response);
+
+      const _pData = response.projects.length>0 ? response?.projects : dummyData;
+console.log(_pData, "pdddd")
+
+      const targetArray = _pData.map((item: any) => ({
+        name: [
+          item.projectId,
+          "https://images.unsplash.com/photo-1506863530036-1efeddceb993?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2244&q=80",
+        ],
+        totalSubmissions:
+          item.successfulSubmissions +
+          item.missedSubmissions +
+          item.incorrectSubmissions,
+      }));
+
+      setProjectsData(targetArray);
     };
 
     fetchData();
@@ -58,7 +89,7 @@ const Dashboard = () => {
       {/* right side section */}
 
       <div className="col-span-1 h-full w-full rounded-xl 2xl:col-span-1">
-        <TopCreatorTable tableData={tableDataTopCreators} />
+        <TopCreatorTable tableData={projectsData} />
         <div className="mb-5" />
         <HistoryCard />
       </div>
