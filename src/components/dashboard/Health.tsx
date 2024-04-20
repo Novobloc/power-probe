@@ -14,12 +14,14 @@ const Health = () => {
   const [barChartDataDailyTraffic, setBarChartDataDailyTraffic] = useState<
     StatusData[]
   >([]);
-  const [categoriesData, setCategoriesData] = useState([]);
-
-  const barChartOptionsDailyTraffic: any = {
+  const [categoriesData, setCategoriesData] = useState<string[]>([]);
+  const [seriesData, setSeriesData] = useState<number[]>([]);
+  const [chartData, setChartData] = useState<{ name: string; data: number[] }[]>([]);
+  
+  const [barChartOptions, setBarChartOptions] = useState<any>({
     chart: {
       toolbar: {
-        show: false,
+        show: true,
       },
     },
     tooltip: {
@@ -37,23 +39,7 @@ const Health = () => {
       theme: "dark",
     },
     xaxis: {
-      categories: categoriesData,
-      // categories: [
-      //   "00",
-      //   "04",
-      //   "08",
-      //   "12",
-      //   "14",
-      //   "16",
-      //   "18",
-      //   "00",
-      //   "04",
-      //   "08",
-      //   "12",
-      //   "14",
-      //   "16",
-      //   "18",
-      // ],
+      categories: [],
       show: false,
       labels: {
         show: true,
@@ -134,15 +120,12 @@ const Health = () => {
         columnWidth: "40px",
       },
     },
-  };
+  });
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await getHealthStatusNode();
-        console.log(response, "response");
-        console.log(data, "data");
-
         setData({ status: response.status, timestamp: Date.now() });
       } catch (error) {
         console.error("Error fetching health status:", error);
@@ -153,45 +136,49 @@ const Health = () => {
     fetchData();
 
     // Fetch data every minute
-    const intervalId = setInterval(fetchData, 60000);
+    const intervalId = setInterval(fetchData, 10000);
 
     // Clean up interval
     return () => clearInterval(intervalId);
   }, []);
 
   useEffect(() => {
-    console.log(barChartDataDailyTraffic, "barChartDataDailyTraffic");
-    console.log(categoriesData, "categories");
-
-    if (data.timestamp) {
+    if (data.timestamp !== null) {
       if (data.status === "OK") {
-        const newData: StatusData[] = [
-          ...barChartDataDailyTraffic,
-          { timestamp: data.timestamp, value: 50 },
-        ];
-        setBarChartDataDailyTraffic([...newData]);
-
-        const newCategories: string[] = [
-          ...categoriesData,
-          new Date(data.timestamp).toLocaleTimeString(),
-        ];
-        setCategoriesData([...newCategories]);
+        const newTimestamp = data.timestamp;
+        setBarChartDataDailyTraffic(prevData => [...prevData, { timestamp: newTimestamp, value: 50 }]);
+        setCategoriesData(prevCategories => [...prevCategories, new Date(newTimestamp).toISOString()]);
+        setSeriesData(prevSeries => [...prevSeries, 50]);
       } else {
-        // Push a value of 0 if status is not OK
-        const newData: StatusData[] = [
-          ...barChartDataDailyTraffic,
-          { timestamp: data.timestamp, value: 0 },
-        ];
-        setBarChartDataDailyTraffic(newData);
-
-        const newCategories: string[] = [
-          ...categoriesData,
-          new Date(data.timestamp).toLocaleTimeString(),
-        ];
-        setCategoriesData([...newCategories]);
+        const newTimestamp = data.timestamp;
+        setBarChartDataDailyTraffic(prevData => [...prevData, { timestamp: newTimestamp, value: 0 }]);
+        setCategoriesData(prevCategories => [...prevCategories, new Date(newTimestamp).toISOString()]);
+        setSeriesData(prevSeries => [...prevSeries, 0]);
       }
     }
-  }, [data.timestamp]);
+  }, [data]);
+
+  useEffect(() => {
+    const limitedSeriesData = seriesData.slice(-10);
+  
+    const limitedCategoriesData = categoriesData.slice(-10);
+  
+    setChartData([
+      {
+        name: "Snapshot Status",
+        data: limitedSeriesData,
+      },
+    ]);
+  
+    setBarChartOptions((prevOptions: any) => ({
+      ...prevOptions,
+      xaxis: {
+        ...prevOptions.xaxis,
+        categories: limitedCategoriesData,
+      },
+    }));
+  }, [seriesData, categoriesData]);
+  
 
   return (
     <Card extra="pb-7 p-[20px]">
@@ -203,7 +190,7 @@ const Health = () => {
           <p className="text-[34px] font-bold text-navy-700 dark:text-white">
             {data.status}{" "}
             <span className="text-sm font-medium leading-6 text-gray-600">
-              {((Date.now() - data.timestamp) / 1000).toFixed(0)} seconds ago
+              {data.timestamp ? ((Date.now() - data.timestamp) / 1000).toFixed(0) : ''} seconds ago
             </span>
           </p>
         </div>
@@ -215,28 +202,10 @@ const Health = () => {
         </div>
       </div>
 
-      <div className="h-[300px] w-full pb-0 pt-10">
-        {barChartDataDailyTraffic &&
-          barChartDataDailyTraffic.length > 0 &&
-          categoriesData.length > 0 && (
-            <BarChart
-              chartData={[
-                {
-                  name: "Snapshot Status",
-                  data: barChartDataDailyTraffic.map(
-                    (dataPoint) => dataPoint.value
-                  ),
-                },
-              ]}
-              // chartData={[
-              //   {
-              //     name: "Snapshot Status",
-              //     data: [50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50],
-              //   },
-              // ]}
-              chartOptions={barChartOptionsDailyTraffic}
-            />
-          )}
+      <div className="h-[400px] w-full pb-0 pt-10">
+        {categoriesData.length > 0 && seriesData.length > 0 && (
+          <BarChart chartData={chartData} chartOptions={barChartOptions} />
+        )}
       </div>
     </Card>
   );

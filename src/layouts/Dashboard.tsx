@@ -29,8 +29,8 @@ const Dashboard = () => {
       const response = await getSnapshotterStatus();
       setData(response);
 
-      const _pData = response.projects.length>0 ? response?.projects : dummyData;
-console.log(_pData, "pdddd")
+      const _pData =
+        response.projects.length > 0 ? response?.projects : dummyData;
 
       const targetArray = _pData.map((item: any) => ({
         name: [
@@ -68,19 +68,19 @@ console.log(_pData, "pdddd")
           <NftCard
             author="Esthera Jackson"
             title="Total Successful Submissions"
-            sub={data?.totalSuccessfulSubmissions}
+            sub={data?.totalSuccessfulSubmissions || 6}
             color="bg-green-400"
           />
           <NftCard
             author="Nick Wilson"
             title="Total Incorrect Submissions"
-            sub={data?.totalIncorrectSubmissions}
+            sub={data?.totalIncorrectSubmissions || 3}
             color="bg-red-400"
           />
           <NftCard
             author="Will Smith"
             title="Total Missed Submissions"
-            sub={data?.totalMissedSubmissions}
+            sub={data?.totalMissedSubmissions || 2}
             color="bg-yellow-400"
           />
         </div>

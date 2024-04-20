@@ -16,7 +16,6 @@ type RowObj = {
 
 function CheckTable(props: { tableData: any }) {
   const { tableData } = props;
-  console.log(tableData, "tableData");
 
   const [sorting, setSorting] = React.useState<SortingState>([]);
   let defaultData = tableData;
