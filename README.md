@@ -1,6 +1,6 @@
 <br>
 
-![shishui](images/brand.png)
+![Brand](images/brand.png)
 
 # Power Probe
 
@@ -13,7 +13,7 @@ Power Probe leverages Power Loom nodes for performance metric tracking, presenti
 
 ### Home Page
 
-![Home](images/home.png)
+![Home](images/dashboard.png)
 
 <br>
 
