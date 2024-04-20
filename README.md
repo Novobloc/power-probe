@@ -1,18 +1,45 @@
+<br>
+
+![shishui](images/brand.png)
+
 # Power Probe
 
-## Steps to run Power Loom Snapshotter Node
+## Description
+Power Probe leverages Power Loom nodes for performance metric tracking, presenting intuitive analytics through a user-friendly dashboard. Utilizing ReactJS, our dashboard elegantly displays snapshotter node stats, offering users comprehensive insights at a glance.
+
+<br>
+
+## Demo
+
+### Home Page
+
+![Home](images/home.png)
+
+<br>
+
+Github : <a style="margin-bottom: 5px;" href="https://github.com/Novobloc/power-probe" target="_blank"> Repo Link </a>
+
+Video : <a style="margin-bottom: 5px;" href="put the video like here" target="_blank"> Youtube Link </a>
+
+## Stack We Used
+
+1. React JS
+2. PowerLoom Snapshotter Node
+3. Eth Sepolia Chain
+
+## Steps to Run Snapshotter Node
 
 1. **Clone the repository against the devnet branch.**
 
-    ```bash
-    git clone https://github.com/PowerLoom/deploy.git --single-branch powerloom_deploy --branch devnet && cd powerloom_deploy
-    ```
+   ```bash
+   git clone https://github.com/PowerLoom/deploy.git --single-branch powerloom_deploy --branch devnet && cd powerloom_deploy
+   ```
 
 2. **Visit [devnet-mint.powerloom.dev](https://devnet-mint.powerloom.dev) to begin the minting process.**
 
-    - Connect your wallet.
-    - Click on "mint".
-    - After minting, copy the slot ID provided and add it to your environment variables in step 3.
+   - Connect your wallet.
+   - Click on "mint".
+   - After minting, copy the slot ID provided and add it to your environment variables in step 3.
 
 3. **Copy `env.example` to `.env`.**
 
@@ -42,34 +69,79 @@
 
 7. **Assign Burner wallet.**
 
-    ```
-    Do you want to assign a burner wallet to a slot? (yes/no):
-    ```
-    Click yes.
+   ```
+   Do you want to assign a burner wallet to a slot? (yes/no):
+   ```
+
+   Click yes.
 
 8. **Enter your private key which you used to mint in dashboard.**
 
-    ```
-    To assign a burner wallet to a slot, you need to sign a message with the private key of the Account holding the slot.
-    Private Key:
-    ```
+   ```
+   To assign a burner wallet to a slot, you need to sign a message with the private key of the Account holding the slot.
+   Private Key:
+   ```
 
+## Steps to Run the Project
 
+1. Clone the repos
 
-
-# API List: APIs integrated from snapshotter node
 ```
-1. http://localhost:3001/api/snapshotter/health
-
-2. http://localhost:3001/api/snapshotter/current_epoch
-
-3. http://localhost:3001/api/snapshotter/epoch
-
-4. http://localhost:3001/api/snapshotter/epoch?id=9103
-
-5. http://localhost:3001/api/snapshotter/snapshotter_status
-
-6. http://localhost:3001/api/snapshotter/snapshotter_epoch_processing_status
-
-7. http://localhost:3001/api/snapshotter/task_status?wallet_address=fdfk&task_type=sbd
+git clone https://github.com/Novobloc/power-probe
 ```
+
+2. Install the dependencies.
+
+```
+ yarn
+```
+
+3. Start the app using command
+
+```
+yarn start
+```
+
+4. Open this link in browser http://localhost:3000
+
+5. Hey, You just ran the code in your system, thats it.
+
+<br>
+
+## Meet Our Team
+
+<div style="display: flex; justify-content: space-between; align-items: center;">
+   <p style="flex:1">Shiva Kumar: </p>
+   <div style="flex:4; justify-content: space-between;">
+      <a href="https://www.linkedin.com/in/shivamangina/" target="_blank">
+      <img src=https://img.shields.io/badge/linkedin-%2300acee.svg?color=405DE6&style=for-the-badge&logo=linkedin&logoColor=white alt=linkedin style="margin-bottom: 5px;" />
+      </a>
+      <a href="https://twitter.com/shivakmangina" target="_blank">
+      <img src=https://img.shields.io/badge/twitter-%2300acee.svg?color=1DA1F2&style=for-the-badge&logo=twitter&logoColor=white alt=twitter style="margin-bottom: 5px;" />
+      </a>
+      <a href="https://www.instagram.com/shiva_mangina" target="_blank">
+      <img src=https://img.shields.io/badge/instagram-%ff5851db.svg?color=C13584&style=for-the-badge&logo=instagram&logoColor=white alt=instagram style="margin-bottom: 5px;" />
+      </a>
+      <a href="https://github.com/shivamangina" target="_blank">
+      <img src=https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white alt=github style="margin-bottom: 5px;" />
+      </a>
+   </div>
+</div>
+
+<div style="display: flex; justify-content: space-between; align-items: center;">
+   <p style="flex:1">Sandeep Kumar: </p>
+   <div style="flex:4; justify-content: space-between;">
+      <a href="https://www.linkedin.com/in/satyasandeep" target="_blank">
+      <img src=https://img.shields.io/badge/linkedin-%2300acee.svg?color=405DE6&style=for-the-badge&logo=linkedin&logoColor=white alt=linkedin style="margin-bottom: 5px;" />
+      </a>
+      <a href="https://twitter.com/satyasandeep76" target="_blank">
+      <img src=https://img.shields.io/badge/twitter-%2300acee.svg?color=1DA1F2&style=for-the-badge&logo=twitter&logoColor=white alt=twitter style="margin-bottom: 5px;" />
+      </a>
+      <a href="https://www.instagram.com/satyasandeep007" target="_blank">
+      <img src=https://img.shields.io/badge/instagram-%ff5851db.svg?color=C13584&style=for-the-badge&logo=instagram&logoColor=white alt=instagram style="margin-bottom: 5px;" />
+      </a>
+      <a href="https://github.com/satyasandeep007" target="_blank">
+      <img src=https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white alt=github style="margin-bottom: 5px;" />
+      </a>
+   </div>
+</div>
